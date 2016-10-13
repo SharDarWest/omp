@@ -13,7 +13,7 @@
 #include <cstdio>
 #include "omp.h"
 
-#define NUM_THREADS 1
+#define NUM_THREADS 4
 
 int main()
 { 
@@ -28,9 +28,9 @@ int main()
         int i, id, nthrds, nthreads; 
         double x, sum;
         id = omp_get_thread_num();
-        nthrds = omp_get_num_threads();
-        if (id == 0) nthreads = nthrds;
-        nthrds = omp_get_num_threads();
+        nthreads = omp_get_num_threads();
+        //if (id == 0) nthreads = nthrds;
+        //nthrds = omp_get_num_threads();
         printf("Before the for loop...\n");
         for (i = id, sum = 0.0; i < num_steps; i = i + nthreads) {
             x = (i + 0.5) * step;
